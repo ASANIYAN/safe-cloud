@@ -34,7 +34,10 @@ const DashboardContent = () => {
                     {childFolders.length > 0 && 
                     childFolders.slice(0, quickAccessSize).map(childFolder => (
                         <Link
-                        to={`/folder/${childFolder.id}`}
+                        to={{
+                            pathname: `/folder/${childFolder.id}`,
+                            state: { folder: folder },
+                        }}
                         className="px-2 py-2 text-center"
                         key={childFolder.id}
                         >

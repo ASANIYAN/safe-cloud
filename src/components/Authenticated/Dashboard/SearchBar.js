@@ -3,13 +3,19 @@ import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../Context/AuthContext";
 import { data } from "../../Firebase/firebase";
 import { ROOT_FOLDER, useFolder } from "../../Hooks/useFolder";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import FolderBreadCrumbs from "./FolderBreadCrumbs";
 
 const SearchBar = () => {
+    
     const { folderId } = useParams();
+    const location = useLocation();
+    const { state = {} } = location;
     const { folder, childFolders } = useFolder(folderId);
     let currentFolder = folder;
+
+    let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER];
+    if (currentFolder) path = [...path, ...currentFolder.path];
     const foldersInSearchBarSize = 3;
     
 
@@ -159,11 +165,30 @@ const SearchBar = () => {
                                 </div>
                             
                                 <p className="text-gray-400 font-medium mt-3 text-sm">
-                                    Location: <span className="text-black"> <FolderBreadCrumbs currentFolder={folder} /> <span className="">/</span></span>
+                                    
+                                    Location: {path.map((folder, index) => (
+                                        <span 
+                                        className="pl-1"
+                                        key={folder.id}
+                                        >
+                                            <Link
+                                            className='text-blue-400' 
+                                            to = {{
+                                                pathname: folder.id ? `/folder/${folder.id}` : "/dashboard",
+                                            }} 
+                                            state = {{ folder: {...folder, path: path.slice(1, index)} }}
+                                            key={folder.id}
+                                            >
+                                                {folder.name}
+                                            </Link> /
+                                        </span> 
+                                    ))} <span className="text-black"> <FolderBreadCrumbs currentFolder={folder} /> </span>
                                 </p>
 
                                 {childFolders.length > 0 && childFolders.slice(0, foldersInSearchBarSize).map(childFolder => (
-                                    <section>
+                                    <section
+                                    key={childFolder.id}
+                                    >
                                         <div className="border border-gray-100 opacity-80 mt-1"></div>               
                                         <Link 
                                         to={`/folder/${childFolder.id}`} 
@@ -173,7 +198,10 @@ const SearchBar = () => {
                                             key={childFolder.id}
                                             className="">
                                                 <i className="fa-solid fa-folder text-homepageCloudIcon"></i> 
-                                                <span className="pl-3">
+                                                <span
+                                                key={childFolder.id} 
+                                                className="pl-3"
+                                                >
                                                     { childFolder.name }
                                                 </span>
                                             </p>
