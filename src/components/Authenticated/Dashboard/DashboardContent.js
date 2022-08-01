@@ -6,7 +6,7 @@ const DashboardContent = () => {
 
     const { folderId } = useParams();
     const quickAccessSize = 5;
-    const { folder, childFolders } = useFolder(folderId);
+    const { folder, childFolders, childFiles } = useFolder(folderId);
     const [ showQuickAccess, setShowQuickAccess ] = useState(true);
     
 
@@ -43,12 +43,39 @@ const DashboardContent = () => {
                         >
                             <i className="fa-solid fa-folder text-homepageCloudIcon text-6xl"></i>
                             <p
-                            className="break-words"
+                            className="truncate"
                             key={childFolder.id}
                             >
                                 {childFolder.name}
                             </p>
                         </Link>
+                    )
+
+                    )}
+                </div>}
+
+                { showQuickAccess && childFolders.length > 0 && childFiles.length > 0 && <hr className="mt-2" />}
+
+                {
+                    showQuickAccess &&
+                    <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-10">
+                    {childFiles.length > 0 && 
+                    childFiles.slice(0, quickAccessSize).map(childFile => (
+                        <a
+                        target="_blank"
+                        rel="noreferrer"
+                        href={`${childFile.url}`}
+                        className="px-2 py-2 text-center truncate"
+                        key={childFile.id} 
+                        >
+                            <i className="fa-solid fa-file"></i>
+                            <p
+                            className="break-words"
+                            key={childFile.id}
+                            >
+                                {childFile.name}
+                            </p>
+                        </a>
                     )
 
                     )}

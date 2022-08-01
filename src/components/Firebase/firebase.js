@@ -1,5 +1,7 @@
 import * as firebase from 'firebase/app';
 import { collection, getFirestore, serverTimestamp } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
+
 
 const App = () => firebase.initializeApp({
     apiKey: "AIzaSyD5THcjyfViSJKUVKdIld7ogot4yKkIz6w",
@@ -27,5 +29,7 @@ const data = {
     getCurrentTimeStamp: serverTimestamp(), 
 
 }
+
+export const storage = getStorage();
 
 export  { userDataRef, data };

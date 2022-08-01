@@ -13,12 +13,6 @@ body {
 }
 
 
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  monospace;
-}
-
 #progressbar {
   transition: all;
   transition-timing-function: ease-in;

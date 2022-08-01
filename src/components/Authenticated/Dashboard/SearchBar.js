@@ -5,6 +5,7 @@ import { data } from "../../Firebase/firebase";
 import { ROOT_FOLDER, useFolder } from "../../Hooks/useFolder";
 import { Link, useParams, useLocation } from "react-router-dom";
 import FolderBreadCrumbs from "./FolderBreadCrumbs";
+import AddFile from "./AddFile";
 
 const SearchBar = () => {
     
@@ -78,7 +79,7 @@ const SearchBar = () => {
         </div>}
             <nav className="w-full">
                         <div className="flex mt-2 flex-col-reverse md:flex-row md:ml-3">
-                            <form className=" md:w-8/12 outline-0 border-0 focus:outline-0 focus:border-0 mt-3 md:mt-0">   
+                            <form className="hidden md:block md:w-8/12 outline-0 border-0 focus:outline-0 focus:border-0 mt-3 md:mt-0">   
                                 <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
                                 <div className="relative w-full outline-0 focus:outline-0 focus:border-0 ml-0 md:ml-3">
                                     <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none border-0 outline-0">
@@ -128,9 +129,14 @@ const SearchBar = () => {
 
                                 </div>
 
-                                <button className="bg-progressbar text-white font-bold text-center h-10 px-7 md:rounded mt-3 md:mt-0 w-full md:w-fit">
+                                <label 
+                                className="bg-progressbar text-white font-bold text-center cursor-pointer flex items-center 
+                                justify-between h-10 px-7 md:rounded mt-3 md:mt-0 w-full md:w-fit"
+                                htmlFor="file_upload"
+                                >
                                     Upload
-                                </button>
+                                </label>
+                                <AddFile />
 
                                 <i className="fa-solid fa-bell text-xl mt-3 text-center md:pr-3"></i>
                             </div>
@@ -200,7 +206,7 @@ const SearchBar = () => {
                                                 <i className="fa-solid fa-folder text-homepageCloudIcon"></i> 
                                                 <span
                                                 key={childFolder.id} 
-                                                className="pl-3"
+                                                className="pl-3 truncate"
                                                 >
                                                     { childFolder.name }
                                                 </span>
@@ -210,32 +216,6 @@ const SearchBar = () => {
                                     </section>
                                     ))
                                 }
-                                
-                                {/* <div className="border border-gray-100 opacity-80 mt-1"></div>
-                                                    
-                                <div className="w-full flex justify-between mt-1">
-                                    <p className="">
-                                        <i className="fa-solid fa-folder text-homepageCloudIcon"></i> 
-                                        <span className="pl-3">
-                                            Marvis Design
-                                        </span>
-                                    </p>
-                                    <i className="fa-solid fa-angle-right text-gray-300 mt-1"></i>
-                                </div>
-                                
-                                <div className="border border-gray-100 opacity-80 mt-1"></div>
-                                                        
-                                <div className="w-full flex justify-between mt-1">
-                                    <p className="">
-                                        <i className="fa-solid fa-folder text-homepageCloudIcon"></i> 
-                                        <span className="pl-3">
-                                            Marvis Design
-                                        </span>
-                                    </p>
-                                    <i className="fa-solid fa-angle-right text-gray-300 mt-1"></i>
-                                </div>
-
-                                <div className="border border-gray-100 opacity-80 mt-1"></div> */}
 
                                 <button 
                                 type="submit" 
