@@ -161,13 +161,13 @@ const SearchBar = () => {
                                 <div className="">
                                     <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-400">Title</label>
                                     <input 
-                                type="text" 
-                                name="title"
-                                id="title"
-                                onChange={ e => setTitle(e.target.value) }  
-                                className="focus:outline-0 border border-gray-200 input h-10 w-full mt-2 focus:border-progressbar leading-3 pl-3 text-lg" 
-                                required
-                                />
+                                    type="text" 
+                                    name="title"
+                                    id="title"
+                                    onChange={ e => setTitle(e.target.value) }  
+                                    className="focus:outline-0 border border-gray-200 input h-10 w-full mt-2 focus:border-progressbar leading-3 pl-3 text-lg" 
+                                    required
+                                    />
                                 </div>
                             
                                 <p className="text-gray-400 font-medium mt-3 text-sm">

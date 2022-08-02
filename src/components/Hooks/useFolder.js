@@ -86,6 +86,9 @@ export function useFolder(folderId = null, folder = null) {
 
     }, [folderId]);
 
+    //checks if the parentId of the folders in the storage equals the folderId we are looking for and also 
+    //checks if the userId equals the uid of the current user.
+    //These operations are performed when there is a change in the folderId or currentUser
     useEffect(() => {
         const q = query(data.foldersRef, where("parentId", "==", folderId), where("userId", "==", currentUser.uid, orderBy("createdAt", "desc"), limit(5)));
         const unsubscribe = onSnapshot(q, (snapshot) => {

@@ -1,6 +1,8 @@
+import { Timestamp } from "firebase/firestore";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useFolder } from "../../Hooks/useFolder";
+import dateFormatter from 'date-format-conversion';
 
 const DashboardContent = () => {
 
@@ -8,6 +10,7 @@ const DashboardContent = () => {
     const quickAccessSize = 5;
     const { folder, childFolders, childFiles } = useFolder(folderId);
     const [ showQuickAccess, setShowQuickAccess ] = useState(true);
+    console.log(childFolders)
     
 
     return (
@@ -58,7 +61,7 @@ const DashboardContent = () => {
 
                 {
                     showQuickAccess &&
-                    <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-10">
+                    <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-5">
                     {childFiles.length > 0 && 
                     childFiles.slice(0, quickAccessSize).map(childFile => (
                         <a
@@ -70,7 +73,7 @@ const DashboardContent = () => {
                         >
                             <i className="fa-solid fa-file"></i>
                             <p
-                            className="break-words"
+                            className="truncate"
                             key={childFile.id}
                             >
                                 {childFile.name}
@@ -85,7 +88,7 @@ const DashboardContent = () => {
                     <h2 className="text-md text-left font-semibold">
                         Recent files
                     </h2>
-                    <div className="w-full text-gray-500 mt-4 text-sm grid grid-cols-3 gap-4">
+                    <div className="w-full text-gray-500 mt-4 text-sm grid grid-cols-3 gap-5">
                         <h3>
                             Name
                         </h3>
@@ -95,65 +98,72 @@ const DashboardContent = () => {
                     </div>
                     <div className="border border-gray-100 w-full mt-2 mb-4"></div>
 
-                    <div className="w-full text-sm grid grid-cols-3 gap-4">
-                        <p className="break-words">
-                            item1
-                        </p>
-                        <p className="break-words">
-                            Yesterday,11:09pm
-                        </p>
-                        <div>
-                            <button>
-                                item button
-                            </button>
-                        </div>
-                    </div>
-                    <div className="border border-gray-100 w-full mt-2 mb-4"></div>
+                    {
+                        childFolders.length > 0 && childFolders.map(childFolder => (
+                            <section
+                            key={childFolder.id}
+                            >
+                                <div className="w-full text-sm grid grid-cols-3 gap-6 truncate">
+                                    <div
+                                    className="truncate"
+                                    >
+                                        <Link 
+                                        to={{
+                                            pathname: `/folder/${childFolder.id}`
+                                        }}
+                                        className="w-fit">
+                                            <span className="mx-2"><i className="fa-solid fa-folder text-homepageCloudIcon text-md"></i></span>
+                                            { childFolder.name }
+                                        </Link>
 
-                    <div className="w-full text-sm grid grid-cols-3 gap-4">
-                        <p className="break-words">
-                            item1
-                        </p>
-                        <p className="break-words">
-                            Yesterday,11:09pm
-                        </p>
-                        <div>
-                            <button>
-                                item button
-                            </button>
-                        </div>
-                    </div>
-                    <div className="border border-gray-100 w-full mt-2 mb-4"></div>
+                                    </div>
+                                    <p className="truncate">
+                                        
 
-                    <div className="w-full text-sm grid grid-cols-3 gap-4">
-                        <p className="break-words">
-                            item1
-                        </p>
-                        <p className="break-words">
-                            Yesterday,11:09pm
-                        </p>
-                        <div>
-                            <button>
-                                item button
-                            </button>
-                        </div>
-                    </div>
-                    <div className="border border-gray-100 w-full mt-2 mb-4"></div>
+                                    </p>
+                                    <div>
+                                        <button className="text-md">
+                                            ...
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="border border-gray-100 w-full mt-2 mb-4"></div>
+                            </section>
+                        ))
+                    }
 
-                    <div className="w-full text-sm grid grid-cols-3 gap-4">
-                        <p className="break-words">
-                            item1
-                        </p>
-                        <p className="break-words">
-                            Yesterday,11:09pm
-                        </p>
-                        <div>
-                            <button>
-                                item button
-                            </button>
-                        </div>
-                    </div>
-                    <div className="border border-gray-100 w-full mt-2 mb-4"></div>
+                    {
+                        childFiles.length > 0 && childFiles.map(childFile => (
+                            <section
+                            key={childFile.id}
+                            >
+                                <div className="w-full text-sm grid grid-cols-3 gap-6 truncate">
+                                    <div
+                                    className="truncate"
+                                    >
+                                        <a 
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        href={`${childFile.url}`}
+                                        className="w-fit">
+                                            <span className="mx-2"><i className="fa-solid fa-file"></i></span>
+                                            { childFile.name }
+                                        </a>
+                                    </div>
+                                    <p className="truncate">
+                                        
+
+                                    </p>
+                                    <div>
+                                        <button className="text-md">
+                                            ...
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="border border-gray-100 w-full mt-2 mb-4"></div>
+                            </section>
+                        ))
+                    }
 
                 </div>
 
