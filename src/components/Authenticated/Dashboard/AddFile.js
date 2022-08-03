@@ -115,7 +115,7 @@ const AddFile = () => {
                         position: 'absolute',
                         bottom: '1rem',
                         right: '1rem',
-                        width: '350px',
+                        width: '320px',
                         maxWidth: '500px',
                     }}
                     >
@@ -125,11 +125,11 @@ const AddFile = () => {
                                 className='flex justify-between mt-3'
                                 >
                                     <p
-                                    className='text-black text-md ml-3 font-bold'
+                                    className='text-black text-sm ml-3 font-semibold'
                                     >
                                         Uploading Files <span> { Math.round(file.progress) }% </span>
                                     </p>
-                                    <p className="text-googleBtnText text-md font-bold cursor-pointer select-none mr-3" onClick={ () => setShowUploadingFiles(showUploading => !showUploading )}>                     {
+                                    <p className="text-googleBtnText text-sm font-semibold cursor-pointer select-none mr-3" onClick={ () => setShowUploadingFiles(showUploading => !showUploading )}>                     {
                                     showUploadingFiles ? "Hide" : "Show"
                                 }
                                     </p>

@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 const Dashboard = () => {
     return (
         <div className="w-full">
-            <div className="flex flex-col md:flex-row">
+            <div className="flex justify-between" style={{maxWidth: "1600px", margin: "0 auto"}}>
                 <Navigation />
                 <SearchBar />
             </div>

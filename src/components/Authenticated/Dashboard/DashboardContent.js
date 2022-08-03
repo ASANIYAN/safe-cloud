@@ -31,9 +31,12 @@ const DashboardContent = () => {
                         }
                     </h2>
                 </div>
+
+                { showQuickAccess && <hr className="mt-2 mb-2" />}
+                
                 {
                     showQuickAccess &&
-                    <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-10">
+                    <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-5">
                     {childFolders.length > 0 && 
                     childFolders.slice(0, quickAccessSize).map(childFolder => (
                         <Link
@@ -57,11 +60,11 @@ const DashboardContent = () => {
                     )}
                 </div>}
 
-                { showQuickAccess && childFolders.length > 0 && childFiles.length > 0 && <hr className="mt-2" />}
+                { showQuickAccess && childFolders.length > 0 && childFiles.length > 0 && <hr className="mt-2 mb-2" />}
 
                 {
                     showQuickAccess &&
-                    <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-5">
+                    <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-2">
                     {childFiles.length > 0 && 
                     childFiles.slice(0, quickAccessSize).map(childFile => (
                         <a
@@ -84,7 +87,7 @@ const DashboardContent = () => {
                     )}
                 </div>}
 
-                <div className="w-full mt-10">
+                <div className="w-full mt-5">
                     <h2 className="text-md text-left font-semibold">
                         Recent files
                     </h2>
@@ -96,7 +99,7 @@ const DashboardContent = () => {
                             Last edited
                         </h3>
                     </div>
-                    <div className="border border-gray-100 w-full mt-2 mb-4"></div>
+                    <hr className="mt-2 mb-2" />
 
                     {
                         childFolders.length > 0 && childFolders.map(childFolder => (
@@ -127,7 +130,7 @@ const DashboardContent = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <div className="border border-gray-100 w-full mt-2 mb-4"></div>
+                                <hr className="mt-3 mb-3" />
                             </section>
                         ))
                     }
@@ -160,7 +163,7 @@ const DashboardContent = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <div className="border border-gray-100 w-full mt-2 mb-4"></div>
+                                <hr className="mt-3 mb-3" />
                             </section>
                         ))
                     }

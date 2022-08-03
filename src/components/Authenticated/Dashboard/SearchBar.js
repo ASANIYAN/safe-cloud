@@ -77,8 +77,8 @@ const SearchBar = () => {
             showModal &&
             <div className="fixed w-screen h-screen z-10 overflow-hidden" style={{backgroundColor: "rgba(0,0,0,0.5)"}}>
         </div>}
-            <nav className="w-full">
-                        <div className="flex mt-2 flex-col-reverse md:flex-row md:ml-3">
+            <section className="w-full">
+                        <div className="flex w-fit ml-auto md:w-full md:flex-row md:ml-3 md:mt-1">
                             <form className="hidden md:block md:w-8/12 outline-0 border-0 focus:outline-0 focus:border-0 mt-3 md:mt-0">   
                                 <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
                                 <div className="relative w-full outline-0 focus:outline-0 focus:border-0 ml-0 md:ml-3">
@@ -104,10 +104,11 @@ const SearchBar = () => {
                                     />
                                 </div>
                             </form>
-                            <div className="flex flex-col md:flex-row w-full md:w-fit md:space-x-8 mt-1 md:ml-10">
+                            <div className="flex flex-row w-full md:w-fit md:space-x-8 mt-1 md:ml-10">
                                 <div className="relative" ref={visibilityParentRef}>
                                     
-                                    <button onClick={() => setToolTipVisibility(visibility => !visibility)} className="text-googleBtnText bg-gray-100 text-center font-bold h-10 px-7 md:rounded w-full md:w-fit mt-3 md:mt-0">
+                                    <button onClick={() => setToolTipVisibility(visibility => !visibility)} 
+                                    className="text-googleBtnText bg-gray-100 w-28 text-center ml-3 sm:mx-3 md:mx-0 md:ml-0 font-bold h-10 md:px-7 rounded md:w-fit mt-2 md:mt-1">
                                         Create
                                     </button>
 
@@ -131,17 +132,17 @@ const SearchBar = () => {
 
                                 <label 
                                 className="bg-progressbar text-white font-bold text-center cursor-pointer flex items-center 
-                                justify-between h-10 px-7 md:rounded mt-3 md:mt-0 w-full md:w-fit"
+                                justify-center h-10 md:px-7 w-28 ml-3 sm:ml-0 rounded mt-2 md:mt-1 md:w-fit sm:mx-3"
                                 htmlFor="file_upload"
                                 >
                                     Upload
                                 </label>
                                 <AddFile />
 
-                                <i className="fa-solid fa-bell text-xl mt-3 text-center md:pr-3"></i>
+                                <i className="fa-solid fa-bell text-xl mt-4 md:mt-3 ml-3 mx-4 md:ml-0 text-center md:pr-10"></i>
                             </div>
                         </div>
-            </nav>
+            </section>
 
              
              {
