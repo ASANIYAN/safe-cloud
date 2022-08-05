@@ -2,7 +2,7 @@ import { Timestamp } from "firebase/firestore";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useFolder } from "../../Hooks/useFolder";
-import dateFormatter from 'date-format-conversion';
+import { useAuth } from "../../Context/AuthContext";
 
 const DashboardContent = () => {
 
@@ -10,7 +10,7 @@ const DashboardContent = () => {
     const quickAccessSize = 5;
     const { folder, childFolders, childFiles } = useFolder(folderId);
     const [ showQuickAccess, setShowQuickAccess ] = useState(true);
-    console.log(childFolders)
+    const { searchTerm } =  useAuth();
     
 
     return (
@@ -38,7 +38,13 @@ const DashboardContent = () => {
                     showQuickAccess &&
                     <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-5">
                     {childFolders.length > 0 && 
-                    childFolders.slice(0, quickAccessSize).map(childFolder => (
+                    childFolders.slice(0, quickAccessSize).filter((val) => {
+                        if(searchTerm === "") {
+                            return val
+                        } else if( val.name.toLowerCase().includes(searchTerm.toLowerCase()) ) {
+                            return val;
+                        }
+                    }).map(childFolder => (
                         <Link
                         to={{
                             pathname: `/folder/${childFolder.id}`,
@@ -66,7 +72,13 @@ const DashboardContent = () => {
                     showQuickAccess &&
                     <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-2">
                     {childFiles.length > 0 && 
-                    childFiles.slice(0, quickAccessSize).map(childFile => (
+                    childFiles.slice(0, quickAccessSize).filter((val) => {
+                        if(searchTerm === "") {
+                            return val
+                        } else if( val.name.toLowerCase().includes(searchTerm.toLowerCase()) ) {
+                            return val;
+                        }
+                    }).map(childFile => (
                         <a
                         target="_blank"
                         rel="noreferrer"

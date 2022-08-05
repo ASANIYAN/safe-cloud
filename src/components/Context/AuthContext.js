@@ -20,6 +20,8 @@ export function AuthProvider(props) {
     const [currentUser, setCurrentUser] = useState("");
     const [loading, setLoading] = useState(true);
     const [width, setWidth] = useState("");
+    // for storing changes in searchBar value
+    const [searchTerm, setSearchTerm] = useState("");
     
 
     const auth = getAuth();
@@ -75,6 +77,8 @@ export function AuthProvider(props) {
 
 
     const value = {
+        searchTerm,
+        setSearchTerm,
         userData,
         setUserData,
         width,

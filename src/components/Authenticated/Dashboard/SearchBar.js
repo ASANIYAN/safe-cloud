@@ -15,6 +15,8 @@ const SearchBar = () => {
     const { folder, childFolders } = useFolder(folderId);
     let currentFolder = folder;
 
+    const { setSearchTerm } =  useAuth();
+
     let path = currentFolder === ROOT_FOLDER ? [] : [ROOT_FOLDER];
     if (currentFolder) path = [...path, ...currentFolder.path];
     const foldersInSearchBarSize = 3;
@@ -99,8 +101,10 @@ const SearchBar = () => {
                                     </div>
                                     <input type="search" id="default-search" 
                                     className="block p-4 pl-10 w-full text-sm placeholder:text-gray-400 bg-transparent border-0 outline-0 active:border-0 active:outline-0" 
-                                    placeholder="Search Folders, Files" 
-                                    required 
+                                    placeholder="Search Folders, Files"
+                                    onChange={(e) => {
+                                        setSearchTerm(e.target.value);
+                                    }} 
                                     />
                                 </div>
                             </form>

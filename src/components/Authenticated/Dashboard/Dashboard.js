@@ -5,7 +5,7 @@ import SearchBar from "./SearchBar";
 const Dashboard = () => {
     return (
         <div className="w-full">
-            <div className="flex justify-between" style={{maxWidth: "1600px", margin: "0 auto"}}>
+            <div className="flex justify-between" style={{maxWidth: "1600px", margin: "0 auto", overflowX: "hidden"}}>
                 <Navigation />
                 <SearchBar />
             </div>
