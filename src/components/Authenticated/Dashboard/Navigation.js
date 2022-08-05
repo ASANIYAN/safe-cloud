@@ -1,5 +1,6 @@
+import { getAuth, signOut } from "firebase/auth";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navigation = () => {
 
@@ -28,6 +29,18 @@ const Navigation = () => {
             document.removeEventListener("mousedown", handleClickOutside);
           };
         }, [ref]);
+      }
+
+      const navigate = useNavigate();
+
+      function handleLogout() {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            // Sign-out successful.
+            navigate('/landing');
+        }).catch((error) => {
+            // An error happened.
+        });
       }
 
       
@@ -74,6 +87,15 @@ const Navigation = () => {
                                 <i className="fa-solid fa-gear"></i>
                                 <span className="flex-1 ml-3 whitespace-nowrap">Settings</span>
                             </Link>
+                        </li>
+                        <li>
+                            <div 
+                            className="flex items-center p-2 text-base cursor-pointer font-normal rounded-lg hover:bg-sideBarHover"
+                            onClick={handleLogout}
+                            >
+                                <i className="fa-solid fa-right-from-bracket"></i>
+                                <span className="flex-1 ml-3 whitespace-nowrap">Logout</span>
+                            </div>
                         </li>
                     </ul>
                 </nav>

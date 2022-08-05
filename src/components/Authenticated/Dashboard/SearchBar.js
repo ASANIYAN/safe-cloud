@@ -81,8 +81,7 @@ const SearchBar = () => {
         </div>}
             <section className="w-full">
                         <div className="flex w-fit ml-auto md:w-full md:flex-row md:ml-3 md:mt-1">
-                            <form className="hidden md:block md:w-8/12 outline-0 border-0 focus:outline-0 focus:border-0 mt-3 md:mt-0">   
-                                <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
+                            <div className="hidden md:block md:w-8/12 outline-0 border-0 focus:outline-0 focus:border-0 mt-3 md:mt-0">   
                                 <div className="relative w-full outline-0 focus:outline-0 focus:border-0 ml-0 md:ml-3">
                                     <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none border-0 outline-0">
                                         <svg 
@@ -100,14 +99,15 @@ const SearchBar = () => {
                                         </svg>
                                     </div>
                                     <input type="search" id="default-search" 
-                                    className="block p-4 pl-10 w-full text-sm placeholder:text-gray-400 bg-transparent border-0 outline-0 active:border-0 active:outline-0" 
+                                    className="block p-4 pl-10 w-full text-md placeholder:text-gray-400 bg-transparent border-0 outline-0 active:border-0 active:outline-0 focus:outline-0" 
                                     placeholder="Search Folders, Files"
                                     onChange={(e) => {
                                         setSearchTerm(e.target.value);
                                     }} 
                                     />
                                 </div>
-                            </form>
+                            </div>
+
                             <div className="flex flex-row w-full md:w-fit md:space-x-8 mt-1 md:ml-10">
                                 <div className="relative" ref={visibilityParentRef}>
                                     
