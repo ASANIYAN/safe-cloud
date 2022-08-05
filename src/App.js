@@ -18,7 +18,7 @@ function App() {
 
             {/* Validated */}
 
-            <Route path='/dashboard' element={
+            <Route path='/' element={
             <Authenticated>
               <Dashboard />
             </Authenticated>
@@ -30,7 +30,7 @@ function App() {
             } />
 
             {/* SignUp */}
-            <Route path='/' element={
+            <Route path='/info' element={
               <Signup>
                 <Generalinfo />
               </Signup>

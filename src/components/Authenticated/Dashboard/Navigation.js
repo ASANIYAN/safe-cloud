@@ -37,14 +37,14 @@ const Navigation = () => {
             <i onClick={toggleSideBar} className="fa-solid fa-bars text-googleBtnText text-xl mt-5 ml-3 cursor-pointer"></i>
             <aside ref={sideBarRef} className={`w-64 h-screen absolute z-10 ${showSideBar ? "left-0" : "-left-80"} transition-all ease-out duration-500`} aria-label="Sidebar">
                 <nav className="py-4 px-3 h-full bg-sideBar">
-                    <i onClick={() => setShowSideBar(false)} className="fa-solid fa-xmark text-right text-white w-full cursor-pointer text-xl"></i>
-                    <ul className="space-y-5 text-white mt-2">
-                        <li>
-                            <Link to="/" className="flex items-center p-2 text-base font-normal rounded-lg hover:bg-sideBarHover">
-                                <i className="fa-solid fa-cloud-arrow-down text-xl text-homepageCloudIcon"></i>
-                                <span className="ml-3">Safecloud</span>
-                            </Link>
-                        </li>
+                    <div className="flex justify-between">
+                        <Link to="/" className="flex items-center p-2 text-base font-normal rounded-lg">
+                            <i className="fa-solid fa-cloud-arrow-down text-xl text-homepageCloudIcon"></i>
+                            <span className="ml-3 text-white pt-1">Safecloud</span>
+                        </Link>
+                        <i onClick={() => setShowSideBar(false)} className="fa-solid block fa-xmark pt-3 text-right text-white w-full cursor-pointer text-2xl"></i>
+                    </div>
+                    <ul className="space-y-5 text-white mt-3">
                         <li>
                             <Link to="/" className="flex items-center p-2 text-base font-normal  rounded-lg hover:bg-sideBarHover">
                                 <i className="fa-solid fa-house"></i>

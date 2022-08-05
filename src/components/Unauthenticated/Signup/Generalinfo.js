@@ -22,7 +22,7 @@ const Generalinfo = () => {
             setError('');
             setLoading(true);
             await signInWithGoogle();
-            // navigate('/');
+            navigate('/');
         } catch (error) {
             let errorMessage = error.message.replace("Firebase:", "").replaceAll("-", " ");
             const forwardSlashIndex = errorMessage.indexOf('/');

@@ -20,8 +20,7 @@ const Login = () => {
             setError('');
             setLoading(true);
             await login(loginEmailRef.current.value, loginPasswordRef.current.value);
-            
-            // navigate('/');
+            navigate('/');
         } catch(error) {
             // console.log(error);
             let errorMessage = error.message.replace("Firebase:", "").replaceAll("-", " ");
@@ -41,7 +40,7 @@ const Login = () => {
             setError('');
             setLoading(true);
             await logInWithGoogle();
-            // navigate('/');
+            navigate('/');
         } catch (error) {
             let errorMessage = error.message.replace("Firebase:", "").replaceAll("-", " ");
             const forwardSlashIndex = errorMessage.indexOf('/');
