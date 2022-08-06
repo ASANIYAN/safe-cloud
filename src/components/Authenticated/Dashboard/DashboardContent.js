@@ -10,8 +10,7 @@ const DashboardContent = () => {
     const quickAccessSize = 5;
     const { folder, childFolders, childFiles } = useFolder(folderId);
     const [ showQuickAccess, setShowQuickAccess ] = useState(true);
-    const { searchTerm } =  useAuth();
-    
+    const { searchTerm, currentUser } =  useAuth();
 
     return (
         <>
@@ -44,6 +43,7 @@ const DashboardContent = () => {
                         } else if( val.name.toLowerCase().includes(searchTerm.toLowerCase()) ) {
                             return val;
                         }
+                        return val
                     }).map(childFolder => (
                         <Link
                         to={{

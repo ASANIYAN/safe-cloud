@@ -108,12 +108,13 @@ const AddFile = () => {
             onChange={handleUpload}
             style={{ opacity: 0, position: 'absolute', left: '-9999px'}}
             />
+
             { uploadingFiles.length > 0 && 
                     <section
                     className='bg-white shadow-[0px_4px_15px_-1px_rgba(0,0,0,0.1)]'
                     style={{
-                        position: 'absolute',
-                        bottom: '1rem',
+                        position: 'fixed',
+                        bottom: '40%',
                         right: '1rem',
                         width: '320px',
                         maxWidth: '500px',
