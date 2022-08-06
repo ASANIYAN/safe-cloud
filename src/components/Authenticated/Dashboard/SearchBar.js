@@ -116,21 +116,24 @@ const SearchBar = () => {
                                         Create
                                     </button>
 
-                                    { toolTipVisibility && <div className="absolute mt-2 space-y-3 w-64 border border-gray-100 z-10 shadow-md bg-white">
-                                        <button 
-                                        className="pl-4 pt-2 hover:bg-gray-100 w-full text-left pb-2" 
-                                        onClick={() => {
-                                            setShowModal(showModal => !showModal);
-                                            setToolTipVisibility(false);
-                                        }}
-                                        > 
-                                        <i className="fa-solid fa-folder text-homepageCloudIcon"></i> New Folder 
-                                        </button>
-                                        <div className="border border-gray-100 w-full"></div>
-                                        <button className="pl-4 hover:bg-gray-100 w-full text-left pt-2 pb-2"> <i className="fa-solid fa-file-lines text-doc"></i> Google Document </button>
-                                        <button className="pl-4 hover:bg-gray-100 w-full text-left pt-2 pb-2"> <i className="fa-solid fa-file text-sheet"></i> Google Sheet </button>
-                                        <button className="pl-4 hover:bg-gray-100 w-full text-left pt-2 pb-2"> <i className="fa-solid fa-file-excel text-yellow-400"></i> Google Presentation </button>
-                                    </div>}
+                                    { toolTipVisibility && 
+                                        <div 
+                                        className="absolute mt-2 space-y-3 w-64 border border-gray-100 z-10 shadow-md bg-white"
+                                        >
+                                            <button 
+                                            className="pl-4 pt-2 hover:bg-gray-100 w-full text-left pb-2" 
+                                            onClick={() => {
+                                                setShowModal(showModal => !showModal);
+                                                setToolTipVisibility(false);
+                                            }}
+                                            > 
+                                            <i className="fa-solid fa-folder text-homepageCloudIcon"></i> New Folder 
+                                            </button>
+                                            <div className="border border-gray-100 w-full"></div>
+                                            <button className="pl-4 hover:bg-gray-100 w-full text-left pt-2 pb-2"> <i className="fa-solid fa-file-lines text-doc"></i> Google Document </button>
+                                            <button className="pl-4 hover:bg-gray-100 w-full text-left pt-2 pb-2"> <i className="fa-solid fa-file text-sheet"></i> Google Sheet </button>
+                                            <button className="pl-4 hover:bg-gray-100 w-full text-left pt-2 pb-2"> <i className="fa-solid fa-file-excel text-yellow-400"></i> Google Presentation </button>
+                                        </div>}
 
                                 </div>
 

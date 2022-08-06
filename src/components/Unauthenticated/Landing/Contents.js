@@ -8,7 +8,7 @@ const Contents = () => {
     return (
         <div className="container">
             
-            <h1 className="text-4xl text-center text-black mt-10 font-bold md:w-2/3 mx-auto">
+            <h1 className="text-3xl md:text-4xl text-center text-black mt-10 font-bold md:w-2/3 mx-auto">
                 Simplify your work with convenient and secure cloud storage
             </h1>
 
