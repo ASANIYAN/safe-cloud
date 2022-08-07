@@ -188,7 +188,7 @@ const SearchBar = () => {
                                             <Link
                                             className='text-blue-400' 
                                             to = {{
-                                                pathname: folder.id ? `/folder/${folder.id}` : "/dashboard",
+                                                pathname: folder.id ? `/folder/${folder.id}` : "/",
                                             }} 
                                             state = {{ folder: {...folder, path: path.slice(1, index)} }}
                                             key={folder.id}
