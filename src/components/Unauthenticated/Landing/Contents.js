@@ -22,7 +22,7 @@ const Contents = () => {
                         Safecloud is the cloud storage application. It provides work groups store, efficiently manage and keep files safe.
                     </p>
                     <div className="mt-8 text-center">
-                        <Link to="/"
+                        <Link to="/info"
                         className="bg-googleBtnText text-white font-bold text-center py-3.5 px-6 rounded "
                         >
                             Get started
