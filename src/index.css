@@ -5,7 +5,7 @@
 
 
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   margin: 0;
   font-family: 'Hahmlet', serif;
   font-family: 'JetBrains Mono', monospace;
