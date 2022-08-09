@@ -199,32 +199,36 @@ const SearchBar = () => {
                                     ))} <span className="text-black"> <FolderBreadCrumbs currentFolder={folder} /> </span>
                                 </p>
 
-                                {childFolders.length > 0 && childFolders.slice(0, foldersInSearchBarSize).map(childFolder => (
-                                    <section
-                                    key={childFolder.id}
-                                    >
-                                        <div className="border border-gray-100 opacity-80 mt-1"></div>               
-                                        <Link 
-                                        to={`/folder/${childFolder.id}`} 
+                                <section
+                                className="overflow-auto h-40"
+                                
+                                >
+                                    {childFolders.length > 0 && childFolders.map(childFolder => (
+                                        <section
                                         key={childFolder.id}
-                                        className="w-full flex justify-between pt-4">
-                                            <p
+                                        >
+                                            <div className="border border-gray-100 opacity-80 mt-1"></div>               
+                                            <Link 
+                                            to={`/folder/${childFolder.id}`} 
                                             key={childFolder.id}
-                                            className="">
-                                                <i className="fa-solid fa-folder text-homepageCloudIcon"></i> 
-                                                <span
-                                                key={childFolder.id} 
-                                                className="pl-3 truncate"
-                                                >
-                                                    { childFolder.name }
-                                                </span>
-                                            </p>
-                                            <i className="fa-solid fa-angle-right text-gray-300 mt-1"></i>
-                                        </Link>
-                                    </section>
-                                    ))
-                                }
-
+                                            className="w-full flex justify-between pt-4">
+                                                <p
+                                                key={childFolder.id}
+                                                className="">
+                                                    <i className="fa-solid fa-folder text-homepageCloudIcon"></i> 
+                                                    <span
+                                                    key={childFolder.id} 
+                                                    className="pl-3 truncate"
+                                                    >
+                                                        { childFolder.name }
+                                                    </span>
+                                                </p>
+                                                <i className="fa-solid fa-angle-right text-gray-300 mt-1"></i>
+                                            </Link>
+                                        </section>
+                                        ))
+                                    }
+                                </section>
                                 <button 
                                 type="submit" 
                                 className="bg-progressbar w-full rounded text-white h-10 mt-10"

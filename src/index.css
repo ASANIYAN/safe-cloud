@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@200&family=JetBrains+Mono:wght@200&display=swap');
 
 
+
 body {
   overflow-x: hidden;
   margin: 0;
@@ -13,13 +14,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-input:focus {
+textarea:focus, input:focus {
   outline: none !important;
 }
 
+
 input:active {
-  outline: none !important;
+  outline: 0 !important;
 }
+
+input {
+  outline-offset: 0;
+  outline-width: 0;
+  outline-color: transparent;
+  outline: 0 !important;
+} 
 
 
 #progressbar {
