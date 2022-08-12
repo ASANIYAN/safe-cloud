@@ -66,7 +66,8 @@ const SearchBar = () => {
             parentId: currentFolder.id,
             userId: currentUser.uid,
             path: path,
-            createdAt: data.getCurrentTimeStamp
+            createdAt: data.getCurrentTimeStamp,
+            deleted: false
         });
 
         setTitle("");
@@ -223,7 +224,7 @@ const SearchBar = () => {
                                                         { childFolder.name }
                                                     </span>
                                                 </p>
-                                                <i className="fa-solid fa-angle-right text-gray-300 mt-1"></i>
+                                                <i className="fa-solid fa-angle-right text-gray-300 mt-1 mr-5"></i>
                                             </Link>
                                         </section>
                                         ))

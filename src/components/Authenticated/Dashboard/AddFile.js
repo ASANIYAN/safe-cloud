@@ -82,6 +82,7 @@ const AddFile = () => {
                     createdAt: serverTimestamp(),
                     folderId: currentFolder.id,
                     userId: currentUser.uid,
+                    deleted: false
                   });
                   
             });          

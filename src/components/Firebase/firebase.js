@@ -3,13 +3,14 @@ import { collection, getFirestore, serverTimestamp } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 
+
 const App = () => firebase.initializeApp({
-    apiKey: "AIzaSyD5THcjyfViSJKUVKdIld7ogot4yKkIz6w",
-    authDomain: "cloud-storage-firebase-12f63.firebaseapp.com",
-    projectId: "cloud-storage-firebase-12f63",
-    storageBucket: "cloud-storage-firebase-12f63.appspot.com",
-    messagingSenderId: "741000125471",
-    appId: "1:741000125471:web:0cb05cbb680d0800f4092a"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID
 
 })
 App();
@@ -32,4 +33,4 @@ const data = {
 
 export const storage = getStorage();
 
-export  { userDataRef, data };
+export  { userDataRef, data, db };

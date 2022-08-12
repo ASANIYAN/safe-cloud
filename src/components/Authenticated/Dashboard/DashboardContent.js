@@ -1,8 +1,9 @@
-import { Timestamp } from "firebase/firestore";
+import { doc, Timestamp, updateDoc } from "firebase/firestore";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useFolder } from "../../Hooks/useFolder";
 import { useAuth } from "../../Context/AuthContext";
+import { db } from "../../Firebase/firebase";
 
 const DashboardContent = () => {
 
@@ -11,6 +12,25 @@ const DashboardContent = () => {
     const { folder, childFolders, childFiles } = useFolder(folderId);
     const [ showQuickAccess, setShowQuickAccess ] = useState(true);
     const { searchTerm, currentUser } =  useAuth();
+
+    function handleFolderDelete(e) {
+        e.preventDefault();
+
+        let id = e.target.getAttribute('data-key');
+        const docRef = doc(db, "folders", id);
+
+        updateDoc(docRef, {
+            deleted: true
+        });
+    }
+
+    // function handleFileDelete(id) {
+    //     // const docRef = doc(db, "folders", id);
+
+    //     // updateDoc(docRef, {
+    //     //     deleted: true
+    //     // });
+    // }
 
     return (
         <>
@@ -38,12 +58,11 @@ const DashboardContent = () => {
                     <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-5">
                     {childFolders.length > 0 && 
                     childFolders.slice(0, quickAccessSize).filter((val) => {
-                        if(searchTerm === "") {
+                        if(searchTerm === "" && val.deleted === false) {
                             return val
-                        } else if( val.name.toLowerCase().includes(searchTerm.toLowerCase()) ) {
+                        } else if( val.name.toLowerCase().includes(searchTerm.toLowerCase()) && val.deleted === false ) {
                             return val;
                         }
-                        return val
                     }).map(childFolder => (
                         <Link
                         to={{
@@ -73,9 +92,9 @@ const DashboardContent = () => {
                     <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-2">
                     {childFiles.length > 0 && 
                     childFiles.slice(0, quickAccessSize).filter((val) => {
-                        if(searchTerm === "") {
+                        if(searchTerm === "" && val.deleted === false) {
                             return val
-                        } else if( val.name.toLowerCase().includes(searchTerm.toLowerCase()) ) {
+                        } else if( val.name.toLowerCase().includes(searchTerm.toLowerCase()) && val.deleted === false ) {
                             return val;
                         }
                     }).map(childFile => (
@@ -114,11 +133,15 @@ const DashboardContent = () => {
                     <hr className="mt-2 mb-2" />
 
                     {
-                        childFolders.length > 0 && childFolders.map(childFolder => (
+                        childFolders.length > 0 && childFolders.filter((val) => {
+                            if (val.deleted === false) {
+                                return val;
+                            }
+                        }).map(childFolder => (
                             <section
                             key={childFolder.id}
                             >
-                                <div className="w-full text-sm grid grid-cols-3 gap-6 truncate">
+                                <div className="w-full text-md grid grid-cols-3 gap-6 truncate">
                                     <div
                                     className="truncate"
                                     >
@@ -136,23 +159,32 @@ const DashboardContent = () => {
                                         
 
                                     </p>
-                                    <div>
-                                        <button className="text-md">
-                                            ...
+                                    <div className="">
+                                        <button
+                                        data-key={childFolder.id}
+                                        className="text-md w-full md:w-32 cursor-pointer text-black 
+                                        py-2 px-3 text-center border border-gray-100 shadow-md bg-gray-100"
+                                        onClick={handleFolderDelete}
+                                        >
+                                            Delete
                                         </button>
                                     </div>
                                 </div>
-                                <hr className="mt-3 mb-3" />
+                                <hr className="my-2" />
                             </section>
                         ))
                     }
 
                     {
-                        childFiles.length > 0 && childFiles.map(childFile => (
+                        childFiles.length > 0 && childFiles.filter((val) => {
+                            if (val.deleted === false) {
+                                return val;
+                            }
+                        }).map(childFile => (
                             <section
                             key={childFile.id}
                             >
-                                <div className="w-full text-sm grid grid-cols-3 gap-6 truncate">
+                                <div className="w-full text-md grid grid-cols-3 gap-6 truncate">
                                     <div
                                     className="truncate"
                                     >
@@ -169,13 +201,15 @@ const DashboardContent = () => {
                                         
 
                                     </p>
-                                    <div>
-                                        <button className="text-md">
-                                            ...
+                                    <div className="">
+                                        <button className="text-md w-full md:w-32 cursor-pointer text-black 
+                                        py-2 px-3 text-center border border-gray-100 shadow-md bg-gray-100"
+                                        >
+                                            Delete
                                         </button>
                                     </div>
                                 </div>
-                                <hr className="mt-3 mb-3" />
+                                <hr className="my-2"/>
                             </section>
                         ))
                     }
