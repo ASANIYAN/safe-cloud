@@ -204,7 +204,11 @@ const SearchBar = () => {
                                 className="overflow-auto h-40"
                                 
                                 >
-                                    {childFolders.length > 0 && childFolders.map(childFolder => (
+                                    {childFolders.length > 0 && childFolders.filter((val) =>{
+                                        if (val.deleted === false) {
+                                            return val;
+                                        }
+                                        }).map(childFolder => (
                                         <section
                                         key={childFolder.id}
                                         >

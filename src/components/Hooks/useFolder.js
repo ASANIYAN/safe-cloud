@@ -103,7 +103,7 @@ export function useFolder(folderId = null, folder = null) {
     }, [folderId, currentUser]);
 
     useEffect(() => {
-        const q = query(data.filesRef, where("folderId", "==", folderId), where("userId", "==", currentUser.uid, orderBy("createdAt", "desc"), limit(5)));
+        const q = query(data.filesRef, where("folderId", "==", folderId), where("userId", "==", currentUser.uid, orderBy("createdAt", "asc"), limit(5)));
         const unsubscribe = onSnapshot(q, (snapshot) => {
             dispatch({
                 type: ACTIONS.SET_CHILD_FILES,

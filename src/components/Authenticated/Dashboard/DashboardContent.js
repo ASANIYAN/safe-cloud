@@ -10,6 +10,7 @@ const DashboardContent = () => {
     const { folderId } = useParams();
     const quickAccessSize = 5;
     const { folder, childFolders, childFiles } = useFolder(folderId);
+    // console.log(childFolders);
     const [ showQuickAccess, setShowQuickAccess ] = useState(true);
     const { searchTerm, currentUser } =  useAuth();
 
@@ -57,13 +58,13 @@ const DashboardContent = () => {
                     showQuickAccess &&
                     <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-5">
                     {childFolders.length > 0 && 
-                    childFolders.slice(0, quickAccessSize).filter((val) => {
+                    childFolders.filter((val) => {
                         if(searchTerm === "" && val.deleted === false) {
                             return val
                         } else if( val.name.toLowerCase().includes(searchTerm.toLowerCase()) && val.deleted === false ) {
                             return val;
                         }
-                    }).map(childFolder => (
+                    }).slice(0, quickAccessSize).map(childFolder => (
                         <Link
                         to={{
                             pathname: `/folder/${childFolder.id}`,
@@ -91,13 +92,13 @@ const DashboardContent = () => {
                     showQuickAccess &&
                     <div className="w-full grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3 md:grid-cols-5 md:gap-4 mt-2">
                     {childFiles.length > 0 && 
-                    childFiles.slice(0, quickAccessSize).filter((val) => {
+                    childFiles.filter((val) => {
                         if(searchTerm === "" && val.deleted === false) {
                             return val
                         } else if( val.name.toLowerCase().includes(searchTerm.toLowerCase()) && val.deleted === false ) {
                             return val;
                         }
-                    }).map(childFile => (
+                    }).slice(0, quickAccessSize).map(childFile => (
                         <a
                         target="_blank"
                         rel="noreferrer"
@@ -155,10 +156,12 @@ const DashboardContent = () => {
                                         </Link>
 
                                     </div>
-                                    <p className="truncate">
-                                        
-
-                                    </p>
+                                    { childFolder.createdAt &&
+                                        <p className="truncate">
+                                            {childFolder.createdAt.toDate().toDateString() + " " + 
+                                            childFolder.createdAt.toDate().toLocaleTimeString('en-NG')}
+                                        </p>
+                                    }
                                     <div className="">
                                         <button
                                         data-key={childFolder.id}
@@ -197,10 +200,12 @@ const DashboardContent = () => {
                                             { childFile.name }
                                         </a>
                                     </div>
-                                    <p className="truncate">
-                                        
+                                    {childFile.createdAt &&
+                                        <p className="truncate">
+                                        {childFile.createdAt.toDate().toDateString() + " " + 
+                                        childFile.createdAt.toDate().toLocaleTimeString('en-NG')}
 
-                                    </p>
+                                    </p>}
                                     <div className="">
                                         <button className="text-md w-full md:w-32 cursor-pointer text-black 
                                         py-2 px-3 text-center border border-gray-100 shadow-md bg-gray-100"
