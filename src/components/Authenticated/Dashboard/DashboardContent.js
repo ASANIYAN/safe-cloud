@@ -25,13 +25,16 @@ const DashboardContent = () => {
         });
     }
 
-    // function handleFileDelete(id) {
-    //     // const docRef = doc(db, "folders", id);
+    function handleFileDelete(e) {
+        e.preventDefault();
 
-    //     // updateDoc(docRef, {
-    //     //     deleted: true
-    //     // });
-    // }
+        let id = e.target.getAttribute('data-key');
+        const docRef = doc(db, "files", id);
+
+        updateDoc(docRef, {
+            deleted: true
+        });
+    }
 
     return (
         <>
@@ -142,7 +145,7 @@ const DashboardContent = () => {
                             <section
                             key={childFolder.id}
                             >
-                                <div className="w-full text-md grid grid-cols-3 gap-6 truncate">
+                                <div className="w-full text-md grid grid-cols-3 gap-6">
                                     <div
                                     className="truncate"
                                     >
@@ -207,8 +210,11 @@ const DashboardContent = () => {
 
                                     </p>}
                                     <div className="">
-                                        <button className="text-md w-full md:w-32 cursor-pointer text-black 
+                                        <button 
+                                        data-key={childFile.id}
+                                        className="text-md w-full md:w-32 cursor-pointer text-black 
                                         py-2 px-3 text-center border border-gray-100 shadow-md bg-gray-100"
+                                        onClick={handleFileDelete}
                                         >
                                             Delete
                                         </button>

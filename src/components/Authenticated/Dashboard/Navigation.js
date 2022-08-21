@@ -77,7 +77,7 @@ const Navigation = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/" className="flex items-center p-2 text-base font-normal rounded-lg dark:text-white hover:bg-sideBarHover">
+                            <Link to="/recovery" className="flex items-center p-2 text-base font-normal rounded-lg dark:text-white hover:bg-sideBarHover">
                                 <i className="fa-solid fa-arrows-rotate"></i>
                                 <span className="flex-1 ml-3 whitespace-nowrap">Recovery</span>
                             </Link>

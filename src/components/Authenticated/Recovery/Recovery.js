@@ -1,18 +1,18 @@
-import DashboardContent from "./DashboardContent";
-import Navigation from "./Navigation";
-import SearchBar from "./SearchBar";
+import Navigation from "../Dashboard/Navigation";
+import SearchBar from "../Dashboard/SearchBar";
+import RecoveryContent from "./RecoveryContent";
 
-const Dashboard = () => {
+const Recovery = () => {
     return (
-        <section className="w-full">
+        <section>
             <div className="flex justify-between" style={{maxWidth: "1600px", margin: "0 auto"}}>
                 <Navigation />
                 <SearchBar />
             </div>
             <div className="border border-gray-100 w-full mt-4 md:mt-1"></div>
-            <DashboardContent />
+            <RecoveryContent />
         </section>
     );
 }
  
-export default Dashboard;
+export default Recovery;

@@ -1,6 +1,7 @@
 import {HashRouter, Routes, Route} from 'react-router-dom';
 import Authenticated from './components/Authenticated/Authenticated';
 import Dashboard from './components/Authenticated/Dashboard/Dashboard';
+import Recovery from './components/Authenticated/Recovery/Recovery';
 import { AuthProvider } from './components/Context/AuthContext';
 import ForgotPassword from './components/Unauthenticated/ForgotPassword/ForgotPassword';
 import Landing from './components/Unauthenticated/Landing/Landing';
@@ -26,6 +27,11 @@ function App() {
             <Route path='/folder/:folderId' element={
             <Authenticated>
               <Dashboard />
+            </Authenticated>
+            } />
+            <Route path='/recovery' element={
+            <Authenticated>
+              <Recovery />
             </Authenticated>
             } />
 
