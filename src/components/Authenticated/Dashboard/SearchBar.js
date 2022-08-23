@@ -25,7 +25,7 @@ const SearchBar = () => {
     const [toolTipVisibility, setToolTipVisibility] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [title, setTitle] = useState("");
-    const { currentUser } = useAuth();
+    const { currentUser, showDeleteFolderModal, setShowDeleteFolderModal } = useAuth();
 
     const visibilityParentRef = useRef(null);
     useOutsideAlerter(visibilityParentRef);
@@ -77,9 +77,15 @@ const SearchBar = () => {
     return (
         <>
         {
+            showDeleteFolderModal &&
+            <div className="fixed w-screen h-screen z-10 overflow-hidden" style={{backgroundColor: "rgba(0,0,0,0.5)"}}>
+            </div>
+        }
+        {
             showModal &&
             <div className="fixed w-screen h-screen z-10 overflow-hidden" style={{backgroundColor: "rgba(0,0,0,0.5)"}}>
-        </div>}
+            </div>
+        }
             <section className="w-full">
                         <div className="flex w-fit ml-auto md:w-full md:flex-row md:ml-3 md:mt-1">
                             <div className="hidden md:block md:w-8/12 outline-0 border-0 focus:outline-0 focus:border-0 mt-3 md:mt-0">   

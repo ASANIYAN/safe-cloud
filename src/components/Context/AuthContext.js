@@ -20,6 +20,10 @@ export function AuthProvider(props) {
     const [currentUser, setCurrentUser] = useState("");
     const [loading, setLoading] = useState(true);
     const [width, setWidth] = useState("");
+    //delete folder modal
+    const [showDeleteFolderModal, setShowDeleteFolderModal] = useState(false);
+    //delete file modal
+    const [ showDeleteFileModal, setShowDeleteFileModal ] = useState(false);
     // for storing changes in searchBar value
     const [searchTerm, setSearchTerm] = useState("");
     
@@ -77,6 +81,10 @@ export function AuthProvider(props) {
 
 
     const value = {
+        showDeleteFileModal,
+        setShowDeleteFileModal,
+        showDeleteFolderModal,
+        setShowDeleteFolderModal,
         searchTerm,
         setSearchTerm,
         userData,
