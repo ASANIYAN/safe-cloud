@@ -1,12 +1,47 @@
-import { doc, onSnapshot, orderBy, query, updateDoc, where } from "firebase/firestore";
+import { deleteDoc, doc, onSnapshot, orderBy, query, updateDoc, where } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "../../Context/AuthContext";
 import { data, db } from "../../Firebase/firebase";
 
 
-const RecoveryFolderModal = ({ folderName }) => {
+const RecoveryFolderModal = () => {
 
-    const { showDeleteFolderModal, setShowDeleteFolderModal } = useAuth();
+    const { currentUser, showDeleteFolderModal, setShowDeleteFolderModal, folderName, setFolderName, id, setId } = useAuth();
+
+    function handleDelete() {
+        
+        //get all folders associated with folder to be deleted
+        const q = query(data.foldersRef, where("parentId", "==", id), where("userId", "==", currentUser.uid));
+        //loops through each folder to get reference and then deletes them if q is not empty
+        if (q) {
+            onSnapshot(q, (snapshot) => {
+                snapshot.forEach((doc) => {
+                    deleteDoc(doc.ref);
+                })
+            });
+        }
+
+        //gets all files associated with folder to be deleted
+        const q1 = query(data.filesRef, where("folderId", "==", id), where("userId", "==", currentUser.uid));
+        //loops through each file to get reference and then deletes them if q1 is not empty
+        if(q1) {
+            onSnapshot(q1, (snapshot) => {
+                snapshot.forEach((doc) => {
+                    deleteDoc(doc.ref);
+                })
+            });
+        }
+        
+        //deletes main doc
+        const docRef = doc(db, "folders", id);
+        deleteDoc(docRef);
+
+        
+        setShowDeleteFolderModal(false);
+        setFolderName("");
+        setId("");
+
+    }
 
     return ( 
         <>      
@@ -15,7 +50,10 @@ const RecoveryFolderModal = ({ folderName }) => {
                     <div className="z-20 absolute shadow w-80 bg-white" style={{left:"40%", top:"25%"}}>
                         <i 
                         className="fa-solid fa-xmark w-full text-lg text-right cursor-pointer pr-4 text-gray-400 pt-2"
-                        onClick={() => setShowDeleteFolderModal(false)}
+                        onClick={() => { 
+                            setShowDeleteFolderModal(false);
+                            setFolderName("");
+                        }}
                         ></i>
                         <p className="font-semibold mt-1 text-center px-2">
                             Are you sure you want to delete this folder?
@@ -25,7 +63,10 @@ const RecoveryFolderModal = ({ folderName }) => {
                             { folderName }
                         </p>
                         <div className="text-center mt-3 mb-4">
-                            <button className="bg-progressbar text-white mt-4 mx-auto w-72 rounded py-1.5">
+                            <button 
+                            className="bg-progressbar text-white mt-4 mx-auto w-72 rounded py-1.5"
+                            onClick={handleDelete}
+                            >
                                 Yeah, delete forever
                             </button>
                         </div>
@@ -38,7 +79,7 @@ const RecoveryFolderModal = ({ folderName }) => {
 
 const RecoveryFolders = ({ folder }) => {
     const [ toggle, setToggle ] = useState(false);
-    const { showDeleteFolderModal, setShowDeleteFolderModal } = useAuth();
+    const { showDeleteFolderModal, setShowDeleteFolderModal, folderName, setFolderName, id, setId } = useAuth();
     
     const btnRef = useRef(null);
     useOutsideAlerter(btnRef);
@@ -75,14 +116,13 @@ const RecoveryFolders = ({ folder }) => {
 
       function handleModalShow(e) {
         e.preventDefault();
-        let name = e.target.parentNode.parentNode.parentNode.querySelector('.folderName').getAttribute('data-key');
-        console.log(name);
+        const name = e.target.parentNode.parentNode.parentNode.querySelector('.folderName').getAttribute('data-name');
+        let id = e.target.parentNode.getAttribute('data-key');
+        setFolderName(name);
+        setId(id);
+        // console.log(name);
         setToggle(false);
         setShowDeleteFolderModal(true);
-      }
-
-      function handleFolderDelete() {
-
       }
 
     return (
@@ -93,7 +133,7 @@ const RecoveryFolders = ({ folder }) => {
                 <div>
                     <span className="mx-2"><i className="fa-solid fa-folder text-homepageCloudIcon"></i></span>
                     <span
-                    data-key={folder.name} 
+                    data-name={folder.name} 
                     className="truncate folderName">
                         { folder && folder.name }
                     </span>
@@ -136,7 +176,7 @@ const RecoveryFolders = ({ folder }) => {
 
             </div>
             <hr className="my-3" />
-            <RecoveryFolderModal folderName={folder.name} />
+            
         </>
     );
 }
@@ -261,6 +301,7 @@ const RecoveryContent = () => {
     const { currentUser } = useAuth();
     let [folders, setFolders] = useState([]);
     let [files, setFiles] = useState([]);
+    const { folderName, setFolderName } = useAuth();
     
     useEffect(() => {
         const q = query(data.foldersRef, where("deleted", "==", true), where("userId", "==", currentUser.uid, orderBy("createdAt", "desc")));
@@ -318,7 +359,10 @@ const RecoveryContent = () => {
 
                         ))
                     }
+                    
                 </div>
+                
+                <RecoveryFolderModal />
 
             </section>
         </>

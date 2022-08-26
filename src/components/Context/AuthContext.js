@@ -17,12 +17,19 @@ export function AuthProvider(props) {
         lastName:"",
         email:"",
     });
+    
     const [currentUser, setCurrentUser] = useState("");
     const [loading, setLoading] = useState(true);
     const [width, setWidth] = useState("");
-    //delete folder modal
+
+    const [folderName, setFolderName] = useState("");
+    const [fileName, setFileName] = useState("");
+
+    const [id, setId] = useState("");
+    
+    //show delete folder modal
     const [showDeleteFolderModal, setShowDeleteFolderModal] = useState(false);
-    //delete file modal
+    //show delete file modal
     const [ showDeleteFileModal, setShowDeleteFileModal ] = useState(false);
     // for storing changes in searchBar value
     const [searchTerm, setSearchTerm] = useState("");
@@ -81,6 +88,12 @@ export function AuthProvider(props) {
 
 
     const value = {
+        id,
+        setId,
+        fileName,
+        setFileName,
+        folderName,
+        setFolderName,
         showDeleteFileModal,
         setShowDeleteFileModal,
         showDeleteFolderModal,
