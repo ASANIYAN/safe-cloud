@@ -47,7 +47,9 @@ const RecoveryFolderModal = () => {
         <>      
                 {
                     showDeleteFolderModal &&
-                    <div className="z-20 absolute shadow w-80 bg-white" style={{left:"40%", top:"25%"}}>
+                    <div 
+                    className="z-20 absolute shadow bg-white" 
+                    style={{left:0, right:0, top:"15%", marginLeft: "auto", marginRight: "auto", marginTop: "auto", maxWidth:"20rem"}}>
                         <i 
                         className="fa-solid fa-xmark w-full text-lg text-right cursor-pointer pr-4 text-gray-400 pt-2"
                         onClick={() => { 
@@ -64,7 +66,7 @@ const RecoveryFolderModal = () => {
                         </p>
                         <div className="text-center mt-3 mb-4">
                             <button 
-                            className="bg-progressbar text-white mt-4 mx-auto w-72 rounded py-1.5"
+                            className="bg-progressbar text-white mt-4 mx-auto w-72 rounded py-1.5 font-bold"
                             onClick={handleDelete}
                             >
                                 Yeah, delete forever
