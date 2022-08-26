@@ -132,11 +132,11 @@ const RecoveryFolders = ({ folder }) => {
             <div 
             key={folder.id}
             className="w-full text-md md:text-lg grid grid-cols-3 gap-6">
-                <div>
+                <div className="truncate">
                     <span className="mx-2"><i className="fa-solid fa-folder text-homepageCloudIcon"></i></span>
                     <span
                     data-name={folder.name} 
-                    className="truncate folderName">
+                    className="folderName">
                         { folder && folder.name }
                     </span>
                 </div>
