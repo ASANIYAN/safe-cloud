@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/safe-cloud/static/css/main.ce117e9e.css",
-    "main.js": "/safe-cloud/static/js/main.e2baa9b8.js",
+    "main.css": "/safe-cloud/static/css/main.e04d06ea.css",
+    "main.js": "/safe-cloud/static/js/main.49fa2d1f.js",
     "static/media/homepage.PNG": "/safe-cloud/static/media/homepage.e3806b3b3597d30c59c1.PNG",
     "static/media/team.svg": "/safe-cloud/static/media/team.9e24dbd792a603decf991dd875257d7d.svg",
     "static/media/files.svg": "/safe-cloud/static/media/files.1fe97639911f06fa5f28384bc75d806e.svg",
     "static/media/secure.svg": "/safe-cloud/static/media/secure.621ca6fa6b9879cda4b4d810bd26233d.svg",
     "index.html": "/safe-cloud/index.html",
-    "main.ce117e9e.css.map": "/safe-cloud/static/css/main.ce117e9e.css.map",
-    "main.e2baa9b8.js.map": "/safe-cloud/static/js/main.e2baa9b8.js.map"
+    "main.e04d06ea.css.map": "/safe-cloud/static/css/main.e04d06ea.css.map",
+    "main.49fa2d1f.js.map": "/safe-cloud/static/js/main.49fa2d1f.js.map"
   },
   "entrypoints": [
-    "static/css/main.ce117e9e.css",
-    "static/js/main.e2baa9b8.js"
+    "static/css/main.e04d06ea.css",
+    "static/js/main.49fa2d1f.js"
   ]
 }
