@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import PasswordStrengthMeter from "../../Hooks/PasswordStrengthMeter";
 import PasswordToggle from "../../Hooks/PasswordToggle";
+import { SuccessToast } from "../../toast/toasts";
 
 const Setpassword = () => {
   const [
@@ -44,6 +45,7 @@ const Setpassword = () => {
       //     email: userData.email
       // }, currentUser.uid);
       setWidth("100");
+      SuccessToast("Account created successfully");
       setTimeout(() => {
         navigate("/login");
       }, 1500);
@@ -67,25 +69,25 @@ const Setpassword = () => {
 
   return (
     <>
-      <div className="container mt-10">
-        <div className="w-full max-w-md mx-auto">
+      <section className="container mt-10">
+        <section className="w-full max-w-md mx-auto">
           <h1 className="text-center text-3xl text-black">
             Set a strong password
           </h1>
           {error && (
-            <div
+            <section
               className="bg-red-100 rounded-lg py-2 px-6 mt-6 text-base text-red-700 mb-2 text-center"
               role="alert"
             >
               {error}
-            </div>
+            </section>
           )}
           <form onSubmit={handleSubmit} className="mt-8">
-            <div className="mt-6">
+            <section className="mt-6">
               <label htmlFor="Password" className="text-gray-400 text-sm block">
                 Password
               </label>
-              <div className="relative">
+              <section className="relative">
                 <input
                   ref={passwordRef}
                   onChange={(e) => setPassword(e.target.value)}
@@ -102,18 +104,18 @@ const Setpassword = () => {
                     onClick={() => setVisibility((visibility) => !visibility)}
                   ></i>
                 </span>
-              </div>
+              </section>
               <PasswordStrengthMeter password={password} />
-            </div>
+            </section>
 
-            <div className="mt-6">
+            <section className="mt-6">
               <label
                 htmlFor="repeatPassword"
                 className="text-gray-400 text-sm block"
               >
                 Repeat password
               </label>
-              <div className="relative">
+              <section className="relative">
                 <input
                   ref={repeatPasswordRef}
                   type={repeatInputType}
@@ -133,9 +135,9 @@ const Setpassword = () => {
                     }
                   ></i>
                 </span>
-              </div>
-            </div>
-            <div className="mt-8">
+              </section>
+            </section>
+            <section className="mt-8">
               <button
                 type="submit"
                 className="bg-progressbar w-full rounded text-white h-10"
@@ -143,10 +145,10 @@ const Setpassword = () => {
               >
                 Submit
               </button>
-            </div>
+            </section>
           </form>
-        </div>
-      </div>
+        </section>
+      </section>
     </>
   );
 };
