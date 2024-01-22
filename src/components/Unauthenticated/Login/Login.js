@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import PasswordToggle from "../../Hooks/PasswordToggle";
-import { SuccessToast } from "../../toast/toasts";
 
 const Login = () => {
   const [passwordInputType, visibility, setVisibility] = PasswordToggle();
@@ -20,7 +19,6 @@ const Login = () => {
       setError("");
       setLoading(true);
       await login(loginEmailRef.current.value, loginPasswordRef.current.value);
-      SuccessToast("log in successful");
       navigate("/");
     } catch (error) {
       // console.log(error);
@@ -45,7 +43,6 @@ const Login = () => {
       setError("");
       setLoading(true);
       await logInWithGoogle();
-      SuccessToast("log in successful");
       navigate("/");
     } catch (error) {
       let errorMessage = error.message

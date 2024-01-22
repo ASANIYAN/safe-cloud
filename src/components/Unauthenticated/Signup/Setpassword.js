@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 import PasswordStrengthMeter from "../../Hooks/PasswordStrengthMeter";
 import PasswordToggle from "../../Hooks/PasswordToggle";
-import { SuccessToast } from "../../toast/toasts";
 
 const Setpassword = () => {
   const [
@@ -45,7 +44,6 @@ const Setpassword = () => {
       //     email: userData.email
       // }, currentUser.uid);
       setWidth("100");
-      SuccessToast("Account created successfully");
       setTimeout(() => {
         navigate("/login");
       }, 1500);
